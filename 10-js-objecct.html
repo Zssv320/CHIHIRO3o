@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>中国四大发明</title>
+    <style>
+        /* CSS样式 */
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .invention {
+            border: 1px solid #000;
+            margin: 10px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .invention h2 {
+            color: #4F4F4F;
+        }
+        .invention p {
+            color: #808080;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>中国四大发明</h1>
+
+    <!-- 使用JavaScript动态生成四大发明的对象 -->
+
+    <script>
+        // 定义一个构造函数（类）来创建发明对象
+        function Invention(name, era, description) {
+            this.name = name;
+            this.era = era;
+            this.description = description;
+        }
+
+        // 为Invention对象添加一个方法来展示信息
+        Invention.prototype.displayInfo = function() {
+            return `<strong>${this.name}</strong> - ${this.era}<br>${this.description}`;
+        };
+
+        // 创建四大发明的对象实例
+        var paper = new Invention("造纸术", "公元105年", "由蔡伦改进，极大地促进了书写和记录信息的方式。");
+        var gunpowder = new Invention("火药", "9世纪", "最初用于道教仪式，后来用于军事和矿业。");
+        var compass = new Invention("指南针", "11世纪", "为航海和地理探索提供了方向指引。");
+        var printing = new Invention("活字印刷术", "公元1040年", "由毕升发明，极大地提高了书籍的生产效率。");
+
+        // 展示每个发明的信息
+        function displayInventions() {
+            var inventionsList = document.createElement("div");
+            inventionsList.className = "inventions-list";
+
+            [paper, gunpowder, compass, printing].forEach(function(invention) {
+                var inventionDiv = document.createElement("div");
+                inventionDiv.className = "invention";
+                inventionDiv.innerHTML = invention.displayInfo();
+                inventionsList.appendChild(inventionDiv);
+            });
+
+            document.body.appendChild(inventionsList);
+        }
+
+        // 页面加载完成后调用displayInventions函数
+        window.onload = displayInventions;
+    </script>
+
+</body>
+</html>
