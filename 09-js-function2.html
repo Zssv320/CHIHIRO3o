@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>随机背景示例</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background 0.5s ease;
+        }
+        #changeBackground {
+            padding: 10px 20px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <button id="changeBackground">点击改变背景</button>
+
+    <script src="script.js"></script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var changeBackgroundButton = document.getElementById('changeBackground');
+        
+        changeBackgroundButton.addEventListener('click', function() {
+            changeBackground();
+        });
+    });
+    
+    function changeBackground() {
+        var color1 = getRandomColor();
+        var color2 = getRandomColor();
+        document.body.style.background = `linear-gradient(to right, ${color1}, ${color2})`;
+    }
+    
+    function getRandomColor() {
+        var letters = '0123456789ABCDEF';
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+</body>
+</html>
