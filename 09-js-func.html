@@ -25,26 +25,34 @@
     <h1>动漫人物属性生成器</h1>
     <button id="generateButton">生成人物属性</button>
     <div id="characterInfo">
+        <p>姓名: <span id="name"></span></p> <!-- 新增显示姓名 -->
         <p>性别: <span id="gender"></span></p>
         <p>武器: <span id="weapon"></span></p>
         <p>性格: <span id="personality"></span></p>
+        </div>
     </div>
     <script>
-       document.addEventListener('DOMContentLoaded', function () {
+     document.addEventListener('DOMContentLoaded', function () {
     const generateButton = document.getElementById('generateButton');
     const genderElement = document.getElementById('gender');
     const weaponElement = document.getElementById('weapon');
     const personalityElement = document.getElementById('personality');
+    const nameElement = document.getElementById('name'); // 新增用于显示姓名的元素
 
     generateButton.addEventListener('click', function () {
         genderElement.textContent = getRandomProperty(['男', '女', '未知']);
-        weaponElement.textContent = getRandomProperty(['剑', '枪', '魔法棒', '拳套']);
+        weaponElement.textContent = getRandomProperty(['剑', '枪', '魔法棒', '镰刀']);
         personalityElement.textContent = getRandomProperty(['勇敢', '机智', '冷静', '热情', '神秘']);
+        nameElement.textContent = getRandomProperty(surnames) + ' ' + getRandomProperty(names); // 生成并显示姓名
     });
 
     function getRandomProperty(properties) {
         return properties[Math.floor(Math.random() * properties.length)];
     }
+
+    // 新增姓氏和名字数组
+    const surnames = ['张', '孙', '梁', '刘', '陈'];
+    const names = ['小明', '小红', '小强', '小花', '小杰'];
 });
     </script>
 </body>
