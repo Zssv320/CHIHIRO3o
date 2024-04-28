@@ -2,69 +2,64 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>中国四大发明</title>
+    <title>面向对象编程与《红楼梦》</title>
     <style>
-        /* CSS样式 */
         body {
             font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
         }
-        .invention {
-            border: 1px solid #000;
-            margin: 10px;
-            padding: 10px;
-            border-radius: 5px;
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
         }
-        .invention h2 {
-            color: #4F4F4F;
+        .person {
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: #fff;
         }
-        .invention p {
-            color: #808080;
+        .person h2 {
+            color: #333;
+        }
+        .person p {
+            color: #666;
         }
     </style>
 </head>
 <body>
-
-    <h1>中国四大发明</h1>
-
-    <!-- 使用JavaScript动态生成四大发明的对象 -->
+    <div class="container">
+        <h1>面向对象编程与《红楼梦》</h1>
+        <div id="jiaBaoyu" class="person">
+            <h2>贾宝玉 - 类</h2>
+            <p>贾宝玉是《红楼梦》中的主角，他可以被看作是一个“类”。在面向对象编程中，类是对象的蓝图或模板，它定义了对象的属性（如姓名、年龄）和方法（如读书、写诗）。</p>
+        </div>
+        <div id="linDaiyu" class="person">
+            <h2>林黛玉 - 对象</h2>
+            <p>林黛玉是《红楼梦》中的一个重要角色，她可以被看作是一个“对象”。对象是类的实例，它拥有类定义的属性和方法。例如，林黛玉具有姓名、年龄等属性，以及她的行动和情感表达等方法。</p>
+        </div>
+    </div>
 
     <script>
-        // 定义一个构造函数（类）来创建发明对象
-        function Invention(name, era, description) {
+        // 定义一个类（Constructor Function）
+        function Character(name, age, gender) {
             this.name = name;
-            this.era = era;
-            this.description = description;
+            this.age = age;
+            this.gender = gender;
+            this.readPoetry = function() {
+                console.log(this.name + " is reading poetry.");
+            };
         }
 
-        // 为Invention对象添加一个方法来展示信息
-        Invention.prototype.displayInfo = function() {
-            return `<strong>${this.name}</strong> - ${this.era}<br>${this.description}`;
-        };
+        // 创建对象（实例化）
+        var jiaBaoyu = new Character("贾宝玉", 20, "male");
+        var linDaiyu = new Character("林黛玉", 18, "female");
 
-        // 创建四大发明的对象实例
-        var paper = new Invention("造纸术", "公元105年", "由蔡伦改进，极大地促进了书写和记录信息的方式。");
-        var gunpowder = new Invention("火药", "9世纪", "最初用于道教仪式，后来用于军事和矿业。");
-        var compass = new Invention("指南针", "11世纪", "为航海和地理探索提供了方向指引。");
-        var printing = new Invention("活字印刷术", "公元1040年", "由毕升发明，极大地提高了书籍的生产效率。");
-
-        // 展示每个发明的信息
-        function displayInventions() {
-            var inventionsList = document.createElement("div");
-            inventionsList.className = "inventions-list";
-
-            [paper, gunpowder, compass, printing].forEach(function(invention) {
-                var inventionDiv = document.createElement("div");
-                inventionDiv.className = "invention";
-                inventionDiv.innerHTML = invention.displayInfo();
-                inventionsList.appendChild(inventionDiv);
-            });
-
-            document.body.appendChild(inventionsList);
-        }
-
-        // 页面加载完成后调用displayInventions函数
-        window.onload = displayInventions;
+        // 使用对象的方法
+        jiaBaoyu.readPoetry(); // 输出: 贾宝玉 is reading poetry.
+        linDaiyu.readPoetry(); // 输出: 林黛玉 is reading poetry.
     </script>
-
 </body>
 </html>
