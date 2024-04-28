@@ -1,65 +1,51 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-    <meta charset="UTF-8">
-    <title>面向对象编程与《红楼梦》</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-        .container {
-            width: 80%;
-            margin: auto;
-            overflow: hidden;
-        }
-        .person {
-            border: 1px solid #ddd;
-            margin-bottom: 20px;
-            padding: 20px;
-            background-color: #fff;
-        }
-        .person h2 {
-            color: #333;
-        }
-        .person p {
-            color: #666;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>红楼梦人物卡片</title>
+<style>
+  body { font-family: 'Arial', sans-serif; }
+  .card {
+    width: 300px;
+    border: 1px solid #ccc;
+    margin: 50px;
+    padding: 20px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  #poem { display: none; }
+</style>
 </head>
 <body>
-    <div class="container">
-        <h1>面向对象编程与《红楼梦》</h1>
-        <div id="jiaBaoyu" class="person">
-            <h2>贾宝玉 - 类</h2>
-            <p>贾宝玉是《红楼梦》中的主角，他可以被看作是一个“类”。在面向对象编程中，类是对象的蓝图或模板，它定义了对象的属性（如姓名、年龄）和方法（如读书、写诗）。</p>
-        </div>
-        <div id="linDaiyu" class="person">
-            <h2>林黛玉 - 对象</h2>
-            <p>林黛玉是《红楼梦》中的一个重要角色，她可以被看作是一个“对象”。对象是类的实例，它拥有类定义的属性和方法。例如，林黛玉具有姓名、年龄等属性，以及她的行动和情感表达等方法。</p>
-        </div>
-    </div>
 
-    <script>
-        // 定义一个类（Constructor Function）
-        function Character(name, age, gender) {
-            this.name = name;
-            this.age = age;
-            this.gender = gender;
-            this.readPoetry = function() {
-                console.log(this.name + " is reading poetry.");
-            };
-        }
+<div id="jia-bao-yu" class="card">
+  <h2>贾宝玉</h2>
+  <p>贾宝玉是《红楼梦》中的主要人物之一。</p>
+  <button onclick="showPoem()">显示诗句</button>
+  <div id="poem">
+    <p>满纸荒唐言，一把辛酸泪。</p>
+  </div>
+</div>
 
-        // 创建对象（实例化）
-        var jiaBaoyu = new Character("贾宝玉", 20, "male");
-        var linDaiyu = new Character("林黛玉", 18, "female");
+<script>
+// 这里定义了一个“人物”类
+function Character(name, poem) {
+  this.name = name;
+  this.poem = poem;
+  this.showPoem = function() {
+    var poemDiv = document.getElementById('poem');
+    poemDiv.style.display = 'block';
+  }
+}
 
-        // 使用对象的方法
-        jiaBaoyu.readPoetry(); // 输出: 贾宝玉 is reading poetry.
-        linDaiyu.readPoetry(); // 输出: 林黛玉 is reading poetry.
-    </script>
+// 创建贾宝玉对象
+var jiaBaoYu = new Character('贾宝玉', '满纸荒唐言，一把辛酸泪。');
+
+// 将贾宝玉对象的方法绑定到按钮的点击事件上
+document.getElementById('jia-bao-yu').onclick = function() {
+  jiaBaoYu.showPoem();
+}
+</script>
+
 </body>
 </html>
