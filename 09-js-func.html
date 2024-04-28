@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>动漫人物属性生成器</title>
+    <style>
+       body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin-top: 50px;
+}
+
+#generateButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#characterInfo p {
+    margin: 10px 0;
+}
+    </style>
+</head>
+<body>
+    <h1>动漫人物属性生成器</h1>
+    <button id="generateButton">生成人物属性</button>
+    <div id="characterInfo">
+        <p>性别: <span id="gender"></span></p>
+        <p>武器: <span id="weapon"></span></p>
+        <p>性格: <span id="personality"></span></p>
+    </div>
+    <script>
+       document.addEventListener('DOMContentLoaded', function () {
+    const generateButton = document.getElementById('generateButton');
+    const genderElement = document.getElementById('gender');
+    const weaponElement = document.getElementById('weapon');
+    const personalityElement = document.getElementById('personality');
+
+    generateButton.addEventListener('click', function () {
+        genderElement.textContent = getRandomProperty(['男', '女', '未知']);
+        weaponElement.textContent = getRandomProperty(['剑', '枪', '魔法棒', '拳套']);
+        personalityElement.textContent = getRandomProperty(['勇敢', '机智', '冷静', '热情', '神秘']);
+    });
+
+    function getRandomProperty(properties) {
+        return properties[Math.floor(Math.random() * properties.length)];
+    }
+});
+    </script>
+</body>
+</html>
